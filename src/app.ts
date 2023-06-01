@@ -1,16 +1,19 @@
 import express from 'express'
 import config from 'config'
 
-const app = express()
-
-app.use(express.json())
+import router from './router'
+import morganMiddleware from './middleware/morganMiddleware'
 
 import db from '../config/db'
+import Logger from '../config/logger'
 
-import router from './router'
+const app = express()
+app.use(express.json())
+
+app.use(morganMiddleware)
+
 app.use('/api/', router)
 
-import Logger from '../config/logger'
 
 const port = config.get<number>('port')
 
