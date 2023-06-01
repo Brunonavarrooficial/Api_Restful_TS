@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { createMovie } from "./controllers/movieControllers";
+import { createMovie, findMOvieById } from "./controllers/movieControllers";
 
 import { validate } from "./middleware/handleValidation";
 import { movieCreateValidation } from './middleware/movieValidation'
@@ -10,4 +10,5 @@ export default router
     .get('/test', (req: Request, res: Response) => {
         res.status(200).send('Api Working!')
     })
+    .get('/movie/:id', findMOvieById)
     .post('/movie', movieCreateValidation(), validate, createMovie)
