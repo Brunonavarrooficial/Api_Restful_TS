@@ -10,10 +10,12 @@ import db from '../config/db'
 import router from './router'
 app.use('/api/', router)
 
+import Logger from '../config/logger'
+
 const port = config.get<number>('port')
 
 app.listen(port, async () => {
     await db()
-    console.log(`Aplicação rodando na porta http://localhost:${port}`)
+    Logger.info(`Aplicação rodando na porta http://localhost:${port}`)
 })
 
